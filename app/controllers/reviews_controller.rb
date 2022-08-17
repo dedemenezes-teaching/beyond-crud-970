@@ -1,14 +1,16 @@
 class ReviewsController < ApplicationController
 
   def new
+    # we need @restaurant in our `simple_form_for`
     @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new
   end
 
   def create
-    # find the restaurant instance that this review beloings to
-    @restaurant = Restaurant.find(params[:restaurant_id])
     @review = Review.new(review_params)
+    # find the restaurant instance that this review beloings to
+    # we need `restaurant_id` to associate review with corresponding restaurant
+    @restaurant = Restaurant.find(params[:restaurant_id])
     @review.restaurant = @restaurant # assigning the restaurant to the review
     if @review.save
       redirect_to restaurant_path(@restaurant)
