@@ -1,0 +1,9 @@
+<h1>Top restaurants</h1>
+
+<% @restaurants.each do |restaurant| %>
+  <%= render restaurant %> <!-- _restaurant.html.erb -->
+
+  <p>
+     <%= link_to "Show this restaurant", restaurant %>
+  </p>
+<% end %>

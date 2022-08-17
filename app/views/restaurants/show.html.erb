@@ -2,9 +2,19 @@
 
 <%= render @restaurant %>
 
+<ul>
+  <% @restaurant.reviews.each do |review| %>
+    <li>
+      <%= review.content %>
+      <%= link_to 'Delete this review', review_path(review), data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+    </li>
+  <% end %>
+</ul>
+
 <div>
   <%= link_to "Edit this restaurant", edit_restaurant_path(@restaurant) %> |
-  <%= link_to "Back to restaurants", restaurants_path %>
+  <%= link_to "Back to restaurants", restaurants_path %> |
+  <%= link_to 'Add a review!', new_restaurant_review_path(@restaurant) %>
 
   <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
 </div>
